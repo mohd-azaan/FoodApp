@@ -1,0 +1,24 @@
+{% extends 'food/base.html' %}
+{% load static %}
+{% block body %}
+<div class= "container mb-5">
+ {% for item in item_list %}
+    <div class="row mb-2">
+        <div class="col-md-3 offset-md-2">
+            <img src="{% static item.item_image %}" class="card" alt="{{ item.item_name }} Image" height=150px>
+        </div>
+        <div class="col-md-4 ">
+            <h3>{{ item.item_name }}</h3>
+            <h5>{{ item.item_description }}</h5>
+            <h6>₹ {{ item.item_price }}</h6>
+            <h6>{{ item.user_name }}</h6>
+            
+        </div>
+        <div class="col-md-2 ">
+            <a href="{% url 'food:detail' item.id %}" class="btn btn-success m-2">Details</a>
+            <a href="{% url 'food:updateItem' item.id %}" class="btn btn-primary m-2">Edit</a>
+        </div>
+    </div>
+ {% endfor %}
+</div>
+{% endblock %}
